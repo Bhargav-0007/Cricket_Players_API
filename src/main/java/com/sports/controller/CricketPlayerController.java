@@ -1,13 +1,13 @@
 package com.sports.controller;
-
-
 import com.sports.entity.CricketPlayer;
 import com.sports.service.CricketPlayerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Optional;
+
 @RestController
-@RequestMapping("/CricketPlayers")
+@RequestMapping("/Cricket")
 public class CricketPlayerController {
     @Autowired
     private CricketPlayerService cricketPlayerService;
@@ -15,23 +15,21 @@ public class CricketPlayerController {
     @PostMapping(value = "/addPlayer")
     public String addCricketPlayer(@RequestBody CricketPlayer cricketPlayer) {
         cricketPlayerService.save(cricketPlayer);
-        return "Player added successfully"+cricketPlayer.getPlayerName();
+        return "Player added successfully: " + cricketPlayer.getPlayerName();
     }
 
     @GetMapping(value = "getPlayer/{playerId}")
-    public String getCricketPlayer(@PathVariable int playerId) {
-        CricketPlayer player = cricketPlayerService.findById(playerId).get();
-        return "Player found: " + player.getPlayerName();
+    public Optional<CricketPlayer> getCricketPlayer(@PathVariable int playerId) {
+        return cricketPlayerService.findById(playerId);
     }
 
 
     @GetMapping(value = "getAllPlayers")
-    public String getAllCricketPlayers() {
-        CricketPlayer player=cricketPlayerService.findAll().iterator().next();
-        return "All players found:"+getAllCricketPlayers();
+    public Iterable<CricketPlayer> getAllCricketPlayers() {
+        return cricketPlayerService.findAll();
     }
 
-    @DeleteMapping(value = "deletePlayer")
+    @DeleteMapping(value = "deletePlayer/{playerId}")
     public String deleteCricketPlayer(@PathVariable int playerId) {
         cricketPlayerService.deleteById(playerId);
         return "Player deleted successfully"+playerId;

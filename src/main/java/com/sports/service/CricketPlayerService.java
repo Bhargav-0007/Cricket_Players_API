@@ -1,6 +1,7 @@
 package com.sports.service;
 
 import com.sports.entity.CricketPlayer;
+import com.sports.entity.TotalMatches;
 import com.sports.repo.CricketPlayerRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -36,4 +37,5 @@ public class CricketPlayerService {
     public void deleteAll() {
         cricketPlayerRepo.deleteAll();
     }
+
 }

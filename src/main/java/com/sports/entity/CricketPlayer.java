@@ -21,8 +21,16 @@ public class CricketPlayer {
     private PlayerPosition position;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "total Matches", referencedColumnName = "id")
+    @JoinColumn(name = "total_matches_id", referencedColumnName = "id")
     private TotalMatches totalMatches;
+
+    public int getPlayerId() {
+        return playerId;
+    }
+
+    public void setPlayerId(int playerId) {
+        this.playerId = playerId;
+    }
 
     public String getPlayerName() {
         return playerName;
