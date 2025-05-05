@@ -20,9 +20,8 @@ public class CricketPlayer {
     @Column
     private PlayerPosition position;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "total_matches_id", referencedColumnName = "id")
-    private TotalMatches totalMatches;
+
+
 
     public int getPlayerId() {
         return playerId;
@@ -72,21 +71,14 @@ public class CricketPlayer {
         this.position = position;
     }
 
-    public TotalMatches getTotalMatches() {
-        return totalMatches;
-    }
 
-    public void setTotalMatches(TotalMatches totalMatches) {
-        this.totalMatches = totalMatches;
-    }
 
-    public CricketPlayer(String playerName, int playerAge, String teamName, int jerseyNumber, PlayerPosition position, TotalMatches totalMatches) {
+    public CricketPlayer(String playerName, int playerAge, String teamName, int jerseyNumber, PlayerPosition position) {
         this.playerName = playerName;
         this.playerAge = playerAge;
         this.teamName = teamName;
         this.jerseyNumber = jerseyNumber;
         this.position = position;
-        this.totalMatches = totalMatches;
     }
     public CricketPlayer() {}
 }
